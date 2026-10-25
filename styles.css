@@ -1,0 +1,348 @@
+:root {
+    --bg-color: #faf9f7;
+    --card-bg: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #5d6368;
+    --border-color: #e4e4e4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+/* Flexbox Method (Recommended) */
+.app-header-flex {
+    display: flex;
+    align-items: center; /* Vertically centers the icon and text */
+    gap: 12px;           /* Spacing between the icon and text */
+    margin-bottom: 20px;
+}
+
+.launcher-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 32px;
+}
+
+/* ==================== Header Controls ==================== */
+.controls {
+    margin-bottom: 16px;
+}
+
+/* View Toggle */
+.view-toggle {
+    display: inline-flex;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.view-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 8px 24px;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+    border-color: #d4d4d4;
+}
+
+.view-btn.active {
+    background: #f5f5f5;
+    font-weight: 600;
+}
+
+/* ==================== Grid View ==================== */
+.app-grid {
+    display: grid;
+    gap: 12px;
+}
+
+/* Responsive grid columns - matches launcher_grid.PNG layout */
+@media (min-width: 1400px) {
+    .app-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+    .app-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .app-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .app-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* App Card */
+.app-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Version Number - colored based on version */
+.version-number {
+    font-size: 16px;
+    padding-bottom: 6px;
+    white-space: nowrap;
+}
+
+.cadcolor {
+    color: #356DA3;
+}
+
+.deckcolor {
+    color: #9D5420;
+}
+
+.designcolor {
+    color: #4F6F21;
+}
+
+.effectcolor {
+    color: #A22E6B;
+}
+
+.figcolor {
+    color: #357859;
+}
+
+.filmcolor {
+    color: #6441CE;
+}
+
+.gridcolor {
+    color: #336E3F;
+}
+
+.lightcolor {
+    color: #835A1B;
+}
+
+.pdfcolor {
+    color: #347464;
+}
+
+.photocolor {
+    color: #2E59BD;
+}
+
+.soundcolor {
+    color: #33708D;
+}
+
+.vectorcolor {
+    color: #AA442E;
+}
+
+.wordcolor {
+    color: #3043B1;
+}
+
+/* App Icon */
+.app-icon-container {
+    flex-shrink: 0;
+}
+
+.app-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: contain;
+}
+
+/* App Info */
+.app-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 60px;
+}
+
+.app-title {
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0; /* Clears default heading margins */
+}
+
+.app-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.last-updated {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+/* Footer Buttons */
+.app-footer {
+    display: flex;
+    gap: 8px;
+}
+
+.open-btn {
+    background: black;
+    border: 1px solid var(--border-color);
+    border-radius: 0px;
+    padding: 8px 20px;
+    font-size: 13px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.open-btn:hover {
+    border-color: #d4d4d4;
+}
+
+.more-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.more-btn:hover {
+    border-color: #d4d4d4;
+}
+
+/* ==================== Table View ==================== */
+.app-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.app-table table {
+    min-width: 600px;
+}
+
+.app-table th,
+.app-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.app-table th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    position: sticky;
+    top: 0;
+}
+
+.table-row {
+    transition: all 0.2s ease;
+}
+
+.table-row:hover {
+    background: #fafafa;
+}
+
+/* Status Badge */
+.status-badge {
+    background: #f5f5f5;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==================== Mobile Toggle ==================== */
+.mobile-toggle {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+}
+
+@media (max-width: 768px) {
+    .launcher-container {
+        padding: 12px 16px;
+    }
+
+    .controls {
+        margin-bottom: 10px;
+    }
+
+    .view-toggle {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .view-btn {
+        padding: 8px 20px;
+    }
+
+    .app-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .view-section.table-view {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: flex !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 100 !important;
+    }
+}
+
+/* Scrollbar Styling */
+.app-table table::-webkit-scrollbar {
+    height: 8px;
+}
+
+.app-table table::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.app-table table::-webkit-scrollbar-thumb {
+    background: #d4d4d4;
+    border-radius: 4px;
+}
+
+.app-table table::-webkit-scrollbar-thumb:hover {
+    background: #bfbfbf;
+}
