@@ -11,16 +11,16 @@ from datetime import datetime
 REPOS_TO_CHECK = [
     "storytold/cadcraft",
     "storytold/deckcraft",
-    "storytold/designcraft"
+    "storytold/designcraft",
     "storytold/effectcraft",
     "storytold/figcraft",
-    "storytold/filmcraft"
+    "storytold/filmcraft",
     "storytold/gridcraft",
     "storytold/lightcraft",
-    "storytold/pdfcraft"
+    "storytold/pdfcraft",
     "storytold/photocraft",
     "storytold/soundcraft",
-    "storytold/vectorcraft"
+    "storytold/vectorcraft",
     "storytold/wordcraft"
 ]
 
