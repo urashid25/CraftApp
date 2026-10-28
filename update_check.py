@@ -51,15 +51,17 @@ def get_latest_github_release(repo):
             data = json.loads(response.read().decode())
             
             tag_name = data.get("tag_name")
+            pub_date = data.get("published_at")
+
             if not tag_name:
                 print(f"  ❌ No tag_name found for {repo}.")
-                return None, None
+                return None, None, None
                 
             # Strip potential leading 'v' to match your asset name format (0.12.1)
             version_clean = tag_name.lstrip('v')
             repo_short_name = repo.split('/')[-1]
-            
-            # Expected asset pattern, e.g., "gridcraft-web-0.12.1.zip"
+            release_date = datetime.strptime(pub_date.split('T')[0], "%Y-%m-%d").strftime("%b %d, %Y")
+
             target_asset_name = f"{repo_short_name}-web-{version_clean}.zip"
             
             # Look through the release assets array
@@ -67,14 +69,14 @@ def get_latest_github_release(repo):
             for asset in assets:
                 if asset.get("name") == target_asset_name:
                     download_url = asset.get("browser_download_url")
-                    return tag_name, download_url
+                    return tag_name, download_url, release_date
                     
             print(f"  ❌ Release {tag_name} found, but missing required asset: {target_asset_name}")
-            return None, None
+            return None, None, None
 
     except Exception as e:
         print(f"  ❌ Error fetching {repo} from GitHub API: {e}")
-        return None, None
+        return None, None, None
 
 def load_local_versions():
     """Reads the key-value version file into a dictionary."""
@@ -113,6 +115,25 @@ def prune_old_backups():
         except Exception as e:
             print(f"  ⚠️ Could not remove {old_bak}: {e}")
 
+def generate_html_snippet(repo_name, version_str, pub_date):
+    """Generates an HTML text snippet for the updated application."""
+    # Ensure version string starts with a 'v' for the UI display
+    display_version = version_str if version_str.startswith('v') else f"v{version_str}"
+    
+    # Display color is specific to each app
+    color_name = repo_name.split("/")[-1].removesuffix("craft")
+
+    html_content = f"""<div class="version-number {color_name}color">{display_version}</div>
+<div class="last-updated">Last updated: {pub_date}</div>
+"""
+    
+    html_filename = f"{repo_name}-version.html"
+    html_path = os.path.join(DOWNLOAD_DIR, html_filename)
+    
+    with open(html_path, "w") as f:
+        f.write(html_content)
+    print(f"  📄 UI HTML snippet generated at: {html_path}")
+
 def main():
     local_versions = load_local_versions()
     updated_versions = local_versions.copy()
@@ -125,7 +146,7 @@ def main():
         local_ver = local_versions.get(repo, "0.0.0")
         print(f"  Local version: {local_ver}")
 
-        remote_ver, download_url = get_latest_github_release(repo)
+        remote_ver, download_url, pub_date = get_latest_github_release(repo)
         if not remote_ver or not download_url:
             print("  Skipping repository due to missing info or assets.")
             continue
@@ -144,6 +165,9 @@ def main():
             try:
                 urllib.request.urlretrieve(download_url, dest_path)
                 print(f"  ✅ Asset downloaded to: {dest_path}")
+                
+                # 🌟 NEW: Generate your custom HTML meta component automatically
+                generate_html_snippet(repo_short_name, remote_ver, pub_date)
                 
                 updated_versions[repo] = remote_ver
                 changes_made = True
