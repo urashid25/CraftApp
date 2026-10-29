@@ -1,4 +1,4 @@
-# CraftApp
+# Craft App Launcher
 
 Launch Page for Web versions of Craft Apps by storytold:
 
