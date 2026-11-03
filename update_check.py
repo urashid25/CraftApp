@@ -21,7 +21,11 @@ REPOS_TO_CHECK = [
     "storytold/photocraft",
     "storytold/soundcraft",
     "storytold/vectorcraft",
-    "storytold/wordcraft"
+    "storytold/wordcraft",
+    "storytold/texturecraft",
+    "storytold/materialcraft",
+    "storytold/craft-anything",
+    "tangency-labs/solidcraft"
 ]
 
 LOCAL_VERSION_FILE = os.path.expanduser("~/.local_repo_versions.txt")
@@ -57,7 +61,7 @@ def get_latest_github_release(repo):
                 print(f"  ❌ No tag_name found for {repo}.")
                 return None, None, None
                 
-            # Strip potential leading 'v' to match your asset name format (0.12.1)
+            # Strip potential leading 'v' to match asset name format (0.12.1)
             version_clean = tag_name.lstrip('v')
             repo_short_name = repo.split('/')[-1]
             release_date = datetime.strptime(pub_date.split('T')[0], "%Y-%m-%d").strftime("%b %d, %Y")
@@ -166,7 +170,7 @@ def main():
                 urllib.request.urlretrieve(download_url, dest_path)
                 print(f"  ✅ Asset downloaded to: {dest_path}")
                 
-                # 🌟 NEW: Generate your custom HTML meta component automatically
+                # Generate custom HTML meta component automatically
                 generate_html_snippet(repo_short_name, remote_ver, pub_date)
                 
                 updated_versions[repo] = remote_ver

@@ -120,61 +120,78 @@ body {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
+    font-weight: bold;
     padding-bottom: 6px;
     white-space: nowrap;
     border-bottom: 1px solid var(--border-color);
 }
 
 .cadcolor {
-    color: #356DA3;
+    color: #14A3C7;
 }
 
 .deckcolor {
-    color: #9D5420;
+    color: #F26B1D;
 }
 
 .designcolor {
-    color: #4F6F21;
+    color: #7BB51C;
 }
 
 .effectcolor {
-    color: #A22E6B;
+    color: #E0368F;
 }
 
 .figcolor {
-    color: #357859;
+    color: #02DA96;
 }
 
 .filmcolor {
-    color: #6441CE;
+    color: #8B5CF6;
 }
 
 .gridcolor {
-    color: #336E3F;
+    color: #1F9D55;
 }
 
 .lightcolor {
-    color: #835A1B;
+    color: #F2A516;
 }
 
 .pdfcolor {
-    color: #347464;
+    color: #B70228;
 }
 
 .photocolor {
-    color: #2E59BD;
+    color: #2F7BF5;
 }
 
 .soundcolor {
-    color: #33708D;
+    color: #14A9C4;
 }
 
 .vectorcolor {
-    color: #AA442E;
+    color: #E8573F;
 }
 
 .wordcolor {
-    color: #3043B1;
+    color: #3B5BDB;
+}
+
+.texturecolor {
+    color: #C2672B;
+}
+
+.materialcolor {
+    color: #178A9C;
+}
+
+.anythingcolor {
+    color: #4E7BFB;
+}
+
+.solidcolor {
+    color: #419BF9;
 }
 
 /* App Icon */
@@ -236,7 +253,7 @@ body {
 .open-btn:hover {
     border-color: #d4d4d4;
 }
-
+/*
 .more-btn {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -252,7 +269,7 @@ body {
     border-color: #d4d4d4;
 }
 
-/* ==================== Table View ==================== */
+/* ==================== Table View ==================== 
 .app-table {
     width: 100%;
     overflow-x: auto;
@@ -286,7 +303,7 @@ body {
     background: #fafafa;
 }
 
-/* Status Badge */
+/* Status Badge 
 .status-badge {
     background: #f5f5f5;
     border: 1px solid var(--border-color);
@@ -297,7 +314,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* ==================== Mobile Toggle ==================== */
+/* ==================== Mobile Toggle ==================== 
 .mobile-toggle {
     display: none;
     justify-content: center;
@@ -340,7 +357,7 @@ body {
     }
 }
 
-/* Scrollbar Styling */
+/* Scrollbar Styling 
 .app-table table::-webkit-scrollbar {
     height: 8px;
 }
@@ -357,3 +374,4 @@ body {
 .app-table table::-webkit-scrollbar-thumb:hover {
     background: #bfbfbf;
 }
+*/
