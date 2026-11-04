@@ -16,6 +16,7 @@
 .dlink {
     text-decoration: none;
     font-style: italic;
+    font-weight:normal;
     font-size: 14px;
     color: var(--text-secondary);
 }
@@ -52,6 +53,7 @@ body {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 6px;
+    font-size:x-small;
 }
 
 .view-btn {
@@ -253,125 +255,3 @@ body {
 .open-btn:hover {
     border-color: #d4d4d4;
 }
-/*
-.more-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 8px 10px;
-    font-size: 20px;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.more-btn:hover {
-    border-color: #d4d4d4;
-}
-
-/* ==================== Table View ==================== 
-.app-table {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.app-table table {
-    min-width: 600px;
-}
-
-.app-table th,
-.app-table td {
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.app-table th {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-secondary);
-    position: sticky;
-    top: 0;
-}
-
-.table-row {
-    transition: all 0.2s ease;
-}
-
-.table-row:hover {
-    background: #fafafa;
-}
-
-/* Status Badge 
-.status-badge {
-    background: #f5f5f5;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 4px 10px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* ==================== Mobile Toggle ==================== 
-.mobile-toggle {
-    display: none;
-    justify-content: center;
-    gap: 8px;
-}
-
-@media (max-width: 768px) {
-    .launcher-container {
-        padding: 12px 16px;
-    }
-
-    .controls {
-        margin-bottom: 10px;
-    }
-
-    .view-toggle {
-        width: 100%;
-        border-radius: 8px;
-    }
-
-    .view-btn {
-        padding: 8px 20px;
-    }
-
-    .app-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .view-section.table-view {
-        display: none;
-    }
-
-    .mobile-toggle {
-        display: flex !important;
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 100 !important;
-    }
-}
-
-/* Scrollbar Styling 
-.app-table table::-webkit-scrollbar {
-    height: 8px;
-}
-
-.app-table table::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.app-table table::-webkit-scrollbar-thumb {
-    background: #d4d4d4;
-    border-radius: 4px;
-}
-
-.app-table table::-webkit-scrollbar-thumb:hover {
-    background: #bfbfbf;
-}
-*/

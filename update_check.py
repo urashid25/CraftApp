@@ -127,7 +127,7 @@ def generate_html_snippet(repo_name, version_str, pub_date):
     # Display color is specific to each app
     color_name = repo_name.split("/")[-1].removesuffix("craft")
 
-    html_content = f"""<div class="version-number {color_name}color">{display_version}</div>
+    html_content = f"""<span>{display_version}</span>
 <div class="last-updated">Last updated: {pub_date}</div>
 """
     
