@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import zipfile
 import json
 import os
 import re
@@ -169,6 +170,10 @@ def main():
             try:
                 urllib.request.urlretrieve(download_url, dest_path)
                 print(f"  ✅ Asset downloaded to: {dest_path}")
+
+                print(f"  Unzipping {dest_path} to {DOWNLOAD_DIR}")
+                with zipfile.ZipFile(dest_path, "r") as zip_ref:
+                    zip_ref.extractall(DOWNLOAD_DIR)
                 
                 # Generate custom HTML meta component automatically
                 generate_html_snippet(repo_short_name, remote_ver, pub_date)
