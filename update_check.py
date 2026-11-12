@@ -25,12 +25,14 @@ REPOS_TO_CHECK = [
     "storytold/wordcraft",
     "storytold/texturecraft",
     "storytold/materialcraft",
-    "storytold/craft-anything",
+#    "storytold/anicraft",
+#    "storytold/craft-anything",
     "tangency-labs/solidcraft"
 ]
 
 LOCAL_VERSION_FILE = os.path.expanduser("~/.local_repo_versions.txt")
 DOWNLOAD_DIR = os.path.expanduser("~/Downloads")
+UPLOAD_CMD_FILE = "./upload.sh"
 # ---------------------
 
 def parse_version(version_str):
@@ -139,9 +141,27 @@ def generate_html_snippet(repo_name, version_str, pub_date):
         f.write(html_content)
     print(f"  📄 UI HTML snippet generated at: {html_path}")
 
+def generate_upload_cmd(upload_list):
+    # Write helper script to upload apps
+    if os.path.exists(UPLOAD_CMD_FILE):
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+        backup_file = f"{UPLOAD_CMD_FILE}.{timestamp}.bak"
+        
+        try:
+            shutil.copy2(UPLOAD_CMD_FILE, backup_file)
+            print(f"  Created backup file at: {backup_file}")
+            with open(UPLOAD_CMD_FILE, "w") as f:
+                for n, upload_list in enumerate(upload_list):
+                    f.write(upload_list[n])
+            print(f"  📄 Created upload command script")
+
+        except Exception as e:
+            print(f"  ⚠️ Warning: Could not create upload script: {e}")
+
 def main():
     local_versions = load_local_versions()
     updated_versions = local_versions.copy()
+    apps_to_upload = []
     changes_made = False
 
     print(f"Starting nightly check for {len(REPOS_TO_CHECK)} repositories...")
@@ -171,13 +191,14 @@ def main():
                 urllib.request.urlretrieve(download_url, dest_path)
                 print(f"  ✅ Asset downloaded to: {dest_path}")
 
-                print(f"  Unzipping {dest_path} to {DOWNLOAD_DIR}")
                 with zipfile.ZipFile(dest_path, "r") as zip_ref:
                     zip_ref.extractall(DOWNLOAD_DIR)
+                print(f"  ✅ Unzipped {dest_path} to {DOWNLOAD_DIR}")
                 
                 # Generate custom HTML meta component automatically
                 generate_html_snippet(repo_short_name, remote_ver, pub_date)
-                
+
+                apps_to_upload.append (f"rclone sync -v ./{repo_short_name}-web-{remote_ver.lstrip('v')}/ r2:{repo_short_name}")
                 updated_versions[repo] = remote_ver
                 changes_made = True
             except Exception as e:
@@ -201,6 +222,7 @@ def main():
         save_local_versions(updated_versions)
         print("  Local tracking file updated successfully.")
         prune_old_backups()
+        generate_upload_cmd(apps_to_upload)
     else:
         print("\n🔒 No updates needed. Tracking file unchanged.")
 
