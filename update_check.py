@@ -154,8 +154,8 @@ def generate_upload_cmd(upload_list):
             print(f"  ⚠️ Warning: Could not backup upload script: {e}")
     
     with open(cmd_path, "w") as f:
-        for n, upload_list in enumerate(upload_list):
-             f.write(upload_list[n])
+        for cmd in upload_list:
+             f.write(f"{cmd}\n")
     print(f"  📄 Created upload command script")
 
 def main():
