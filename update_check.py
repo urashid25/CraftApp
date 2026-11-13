@@ -32,7 +32,7 @@ REPOS_TO_CHECK = [
 
 LOCAL_VERSION_FILE = os.path.expanduser("~/.local_repo_versions.txt")
 DOWNLOAD_DIR = os.path.expanduser("~/Downloads")
-UPLOAD_CMD_FILE = "~/Downloads/upload.sh"
+UPLOAD_CMD_FILE = "upload.sh"
 # ---------------------
 
 def parse_version(version_str):
@@ -143,16 +143,17 @@ def generate_html_snippet(repo_name, version_str, pub_date):
 
 def generate_upload_cmd(upload_list):
     # Write helper script to upload apps
-    if os.path.exists(UPLOAD_CMD_FILE):
+    cmd_path = os.path.join(DOWNLOAD_DIR, UPLOAD_CMD_FILE)
+
+    if os.path.exists(cmd_path):
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-        backup_file = f"{UPLOAD_CMD_FILE}.{timestamp}.bak"
+        backup_file = f"{cmd_path}.{timestamp}.bak"
         try:
-            shutil.copy2(UPLOAD_CMD_FILE, backup_file)
-            print(f"  Created backup file at: {backup_file}")
+            shutil.copy2(cmd_path, backup_file)
         except Exception as e:
             print(f"  ⚠️ Warning: Could not backup upload script: {e}")
     
-    with open(UPLOAD_CMD_FILE, "w") as f:
+    with open(cmd_path, "w") as f:
         for n, upload_list in enumerate(upload_list):
              f.write(upload_list[n])
     print(f"  📄 Created upload command script")
