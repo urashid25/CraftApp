@@ -116,6 +116,14 @@ body {
     flex-direction: column;
     gap: 8px;
 }
+/*
+    filter: grayscale(100%);
+    transition: filter 0.3s ease
+}
+
+.app-card:hover {
+    filter: grayscale(0%);
+}
 
 /* Version Number - colored based on version */
 .version-number {
@@ -206,8 +214,12 @@ body {
     height: 64px;
     border-radius: 6px;
     object-fit: contain;
+    transition: transform 0.3s ease
 }
 
+.app-icon:hover {
+    transform: scale(1.15)
+}
 /* App Info */
 .app-info {
     display: flex;

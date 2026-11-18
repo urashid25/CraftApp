@@ -1,0 +1,74 @@
+{
+    "cadcraft" : {
+        "version" : "v0.20.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "deckcraft" : {
+        "version" : "v0.18.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "designcraft" : {
+        "version" : "v0.20.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "effectcraft" : {
+        "version" : "v0.24.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "figcraft" : {
+        "version" : "v0.18.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "filmcraft" : {
+        "version" : "v0.20.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "gridcraft" : {
+        "version" : "v0.19.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "lightcraft" : {
+        "version" : "v0.21.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "materialcraft" : {
+        "version" : "v0.4.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "pdfcraft" : {
+        "version" : "v0.21.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "photocraft" : {
+        "version" : "v0.23.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "soundcraft" : {
+        "version" : "v0.20.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "texturecraft" : {
+        "version" : "v0.6.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "vectorcraft" : {
+        "version" : "v0.24.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "wordcraft" : {
+        "version" : "v0.18.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "anicraft" : {
+        "version" : "v0.20.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "craft-anything" : {
+        "version" : "v0.20.1",
+        "updated" : "Nov 12, 2026"
+    },
+    "solidcraft" : {
+        "version" : "v0.44.1",
+        "updated" : "Nov 17, 2026"
+    }
+}
