@@ -33,6 +33,7 @@ REPOS_TO_CHECK = [
 LOCAL_VERSION_FILE = os.path.expanduser("~/.local_repo_versions.txt")
 DOWNLOAD_DIR = os.path.expanduser("~/Downloads")
 UPLOAD_CMD_FILE = "upload.sh"
+VERSIONS_JSON = "versions.json"
 # ---------------------
 
 def parse_version(version_str):
@@ -122,24 +123,32 @@ def prune_old_backups():
         except Exception as e:
             print(f"  ⚠️ Could not remove {old_bak}: {e}")
 
-def generate_html_snippet(repo_name, version_str, pub_date):
-    """Generates an HTML text snippet for the updated application."""
+def update_versions_json(repo_name, version_str, pub_date):
+    """Updates versions json file with the latest app release info."""
     # Ensure version string starts with a 'v' for the UI display
     display_version = version_str if version_str.startswith('v') else f"v{version_str}"
-    
-    # Display color is specific to each app
-    color_name = repo_name.split("/")[-1].removesuffix("craft")
 
-    html_content = f"""<span>{display_version}</span>
-<div class="last-updated">Last updated: {pub_date}</div>
-"""
+    app_key = repo_name.split("/")[-1].lower()
+    json_path = os.path.join(DOWNLOAD_DIR, VERSIONS_JSON)
+
+    if os.path.exists(json_path):
+        with open(json_path, "r", encoding="utf-8") as f:
+            try:
+                versions_data = json.load(f)
+            except json.JSONDecodeError:
+                versions_data = {}
+    else:
+        versions_data = {}
+
+    versions_data[app_key] = {
+        "version" : display_version,
+        "updated" : pub_date
+    }
     
-    html_filename = f"{repo_name}-version.html"
-    html_path = os.path.join(DOWNLOAD_DIR, html_filename)
-    
-    with open(html_path, "w") as f:
-        f.write(html_content)
-    print(f"  📄 UI HTML snippet generated at: {html_path}")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(versions_data, f, indent=2)
+
+    print(f"  📄 {VERSIONS_JSON} updates for {app_key} at: {json_path}")
 
 def generate_upload_cmd(upload_list):
     # Write helper script to upload apps
@@ -177,6 +186,9 @@ def main():
             continue
         print(f"  Latest remote: {remote_ver}")
 
+        # Update versions json file
+        update_versions_json(repo_short_name, remote_ver, pub_date)
+
         if parse_version(remote_ver) > parse_version(local_ver):
             print(f"  🚀 New version detected! Downloading custom zip asset...")
             
@@ -195,9 +207,6 @@ def main():
                     zip_ref.extractall(DOWNLOAD_DIR)
                 print(f"  ✅ Unzipped {dest_path} to {DOWNLOAD_DIR}")
                 
-                # Generate custom HTML meta component automatically
-                generate_html_snippet(repo_short_name, remote_ver, pub_date)
-
                 apps_to_upload.append (f"rclone sync -v ./{repo_short_name}-web-{remote_ver.lstrip('v')}/ r2:{repo_short_name}")
                 updated_versions[repo] = remote_ver
                 changes_made = True
