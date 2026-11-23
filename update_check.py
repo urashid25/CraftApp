@@ -186,9 +186,6 @@ def main():
             continue
         print(f"  Latest remote: {remote_ver}")
 
-        # Update versions json file
-        update_versions_json(repo_short_name, remote_ver, pub_date)
-
         if parse_version(remote_ver) > parse_version(local_ver):
             print(f"  🚀 New version detected! Downloading custom zip asset...")
             
@@ -207,6 +204,9 @@ def main():
                     zip_ref.extractall(DOWNLOAD_DIR)
                 print(f"  ✅ Unzipped {dest_path} to {DOWNLOAD_DIR}")
                 
+                # Update versions json file
+                update_versions_json(repo_short_name, remote_ver, pub_date)
+
                 apps_to_upload.append (f"rclone sync -v ./{repo_short_name}-web-{remote_ver.lstrip('v')}/ r2:{repo_short_name}")
                 updated_versions[repo] = remote_ver
                 changes_made = True

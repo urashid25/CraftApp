@@ -35,9 +35,9 @@
         "version" : "v0.4.1",
         "updated" : "Nov 12, 2026"
     },
-    "pdfcraft" : {
-        "version" : "v0.21.1",
-        "updated" : "Nov 12, 2026"
+    "pdfcraft": {
+        "version": "v0.22.0",
+        "updated": "Nov 23, 2026"
     },
     "photocraft" : {
         "version" : "v0.23.1",
@@ -67,8 +67,8 @@
         "version" : "v0.20.1",
         "updated" : "Nov 12, 2026"
     },
-    "solidcraft" : {
-        "version" : "v0.44.1",
-        "updated" : "Nov 17, 2026"
+    "solidcraft": {
+        "version": "v0.47.0",
+        "updated": "Nov 23, 2026"
     }
 }
