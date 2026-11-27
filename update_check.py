@@ -31,7 +31,7 @@ REPOS_TO_CHECK = [
 ]
 
 LOCAL_VERSION_FILE = os.path.expanduser("~/.local_repo_versions.txt")
-DOWNLOAD_DIR = os.path.expanduser("~/Downloads")
+DOWNLOAD_DIR = os.path.expanduser("~/Downloads/CraftApp")
 UPLOAD_CMD_FILE = "upload.sh"
 VERSIONS_JSON = "versions.json"
 # ---------------------
